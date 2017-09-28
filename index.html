@@ -1,50 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
     <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta charset='utf-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
         <title>Calculator</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css' integrity='sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M' crossorigin='anonymous'>
         <style>
             .form-group{ margin-right: 2em; }
             .myResult{ margin-left: 25px; }
         </style>
     </head>
     <body>
-        <div class="jumbotron">
-            <div class="container">
-                <h2>Calculator</h2>
+        <div class='jumbotron'>
+            <div class='container'>
+                <h2 class='display-4'>Calculator</h2>
+                <small>
+                    <p>According to Wikipedia, the first solid state electronic calculator was created in the early 1960s. The pocket sized devices became available in the 1970s, especially after the first microprocessor, the Intel 4004, developed by Intel for the Japanese calculator company Busicom. They later became used commonly within the petroleum industry (oil and gas).</p>
+                    <p> Modern electronic calculators vary: from cheap, give-away, credit-card-sized models to sturdy desktop models with built-in printers. They became popular in the mid-1970s (as integrated circuits made their size and cost small). By the end of that decade, calculator prices had reduced to a point where a basic calculator was affordable to most and they became common in schools.</p>
+                    <p>Computer operating systems as far back as early Unix have included interactive calculator programs such as dc and hoc, and calculator functions are included in almost all personal digital assistant (PDA) type devices (save a few dedicated address book and dictionary devices).</p>
+                </small>
             </div>
         </div>
-        <div class="container">
-            <div class="col-xs-12">
-                <form id="calculator" class="form-inline">
-                    <div class="form-group">
-                        <input class="form-control" name="left" placeholder="Number" type="number"/>
+        <div class='container'>
+            <div class='col-xs-12'>
+                <form id='calculator' class='form-inline'>
+                    <div class='form-group'>
+                        <input class='form-control' name='left' placeholder='Number' type='number'/>
                     </div>
-                    <div class="form-group">
-                        <select class="form-control" name="operator">
+                    <div class='form-group'>
+                        <select class='form-control' name='operator'>
                             <option>+</option>
                             <option>-</option>
                             <option>*</option>
                             <option>/</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <input class="form-control" name="right" placeholder="Number" type="number">
+                    <div class='form-group'>
+                        <input class='form-control' name='right' placeholder='Number' type='number'>
                     </div>
-                    <button class="btn btn-primary" type="submit">Compute</button>
-                    <div class="myResult">
-                        <span>= </span><span id="resultId"></span>
+                    <button class='btn btn-primary' type='submit'>Compute</button>
+                    <div class='myResult'>
+                        <span id='resultId'></span>
                     </div>
                 </form>
+                <a href='#' id='clear' class='small'>Clear</a>
             </div>
         </div><!-- ./container -->
 
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+        <script src='https://code.jquery.com/jquery-3.2.1.slim.min.js' integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN' crossorigin='anonymous'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js' integrity='sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4' crossorigin='anonymous'></script>
+        <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js' integrity='sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1' crossorigin='anonymous'></script>
 
         <script>
             const handleMath = (leftValue, rightValue, operator)=> {
@@ -63,7 +68,12 @@
                     event.preventDefault()
                     const{left, right, operator} = event.target
                     const result = handleMath (left.value, right.value, operator.value)
-                    document.getElementById('resultId').innerHTML = result
+                    document.getElementById('resultId').innerHTML = ('= ' + result)
+                }
+                document.getElementById('clear').onclick=(event)=> {
+                    event.preventDefault();
+                    document.getElementsByName('left')[0].value=''  
+                    document.getElementsByName('right')[0].value=''                  
                 }
             }
         </script>
